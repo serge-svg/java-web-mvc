@@ -4,25 +4,34 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <title>Form course</title>
 </head>
 <body>
 	<div class="container">
-		<form action="../ServletController/add" method="post">
-			<table>
-				<tr>
-					<th>Name</th>
-					<th>Level</th>
-				</tr>
-				<tr>
-					<td><input type="text" name="name" /></td>
-					<td><input type="text" name="level" /></td>
-				</tr>
-			</table>
-			<div class="okButton">
-				<button type="submit" class="btn btn-primary">Accept</button>
+		<h2>Add course Form</h2>
+		<div class="card">
+			<div class="card-body">
+				<form action="../ServletController/add" method="post">
+					<div class="form-group row">
+						<label for="name" class="col-sm-2 col-form-label">Name</label>
+						<div class="col-sm-7">
+							<input type="text" name="name" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="level" class="col-sm-2 col-form-label">Level</label>
+						<div class="col-sm-7">
+							<input type="text" name="level" />
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Accept</button>
+				</form>
 			</div>
-		</form>
+		</div>
 	</div>
 </body>
 </html>
