@@ -8,15 +8,43 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#filterName").keyup(function() {
+			$.get("../rest/courses/filter/"+$(this).val(), function(data) {
+				$("tr").remove();
+				if(Array.isArray(data.course)) {
+					for(var i = 0; i < data.course.length; i++) {
+						var course = data.course[i];
+						generateTable(course);						
+					}
+				} else {
+					generateTable(data.course);
+				}
+			});
+		})
+		
+		function generateTable(course) {
+			$("#tableCourses").append(					
+				"<tr><td>" + course.name + "</td>"+
+				"<td>" + course.level + "</td>"+
+				"<td><form action='../ServletController/delete' method='post'>"+
+				"<input type='hidden' name='name' value='" + course.name + "'/>"+
+				"<input type='hidden' name='level' value='" + course.level + "'/>"+ 
+				"<button type='submit' class='btn btn-outline-danger'>Delete</button>"+
+				"</form>"+
+				"</td>"+
+				"</tr>");
+		}
+	});
+</script>
 <title>List of courses</title>
 </head>
 <body>
 	<div class="container" style="padding-top: 20px" >
-		<form action="../ServletController/filter" method="post">
-			<input type="text" name="filterName" id="filterName" />
-			<button type="submit" class="btn btn-primary" value="filter">Filter</button>
-		</form>
-		<table style="width: 80%">
+	Filter	<input type="text" name="filterName" id="filterName" />
+		<table style="width: 80%" id="tableCourses">
 			<tr>
 				<th>Name</th>
 				<th>Level</th>

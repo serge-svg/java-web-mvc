@@ -24,7 +24,7 @@ public class RestService {
 	@GET
 	@Path("/filter/{name:.*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Course> findByName(@PathParam("name") String name) {
+	public List<Course> filterByName(@PathParam("name") String name) {
 		CourseService courseService = new CourseService();
 		return courseService.findByName(name);
 
