@@ -15,7 +15,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Level</th>
-			<th>Action</th>				
+			<th>Action</th>
 		</tr>
 		<c:forEach items="${listOfCourses}" var="course">
 			<tr>
