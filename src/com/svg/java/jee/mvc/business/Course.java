@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement // To allow it to be used on rest services
 public class Course {
 
 	public Course() {

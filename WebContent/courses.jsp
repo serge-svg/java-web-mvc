@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="secure" uri="http://www.samaxes.com/taglib/secure"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -12,10 +13,12 @@
 </head>
 <body>
 	<div class="container" style="padding-top: 20px" >
+<secure:none roles="administrator, basic">
 		<form action="../ServletController/filter" method="post">
 			<input type="text" name="filterName" id="filterName" />
 			<button type="submit" class="btn btn-primary" value="filter">Filter</button>
 		</form>
+</secure:none>		
 		<table style="width: 80%">
 			<tr>
 				<th>Name</th>

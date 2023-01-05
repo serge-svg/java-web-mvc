@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
 	<display-name>java-web-mvc</display-name>
 	<welcome-file-list>
 		<welcome-file>
    		index.jsp
-    </welcome-file>
+   		 </welcome-file>
 	</welcome-file-list>
-		
+
+<!-- Begin of Security configuration -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>application</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+
+		<auth-constraint>
+			<role-name>administrator</role-name>
+			<role-name>advance</role-name>
+			<role-name>basic</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>administrator</role-name>
+	</security-role>
+	<security-role>
+		<role-name>advance</role-name>
+	</security-role>
+	<security-role>
+		<role-name>basic</role-name>
+	</security-role>
+	
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/error.jsp</form-error-page>
+		</form-login-config>
+	</login-config>	
+<!-- End of Security configuration -->
+
 	<servlet>
 		<servlet-name>JerseyServicio</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
@@ -19,9 +50,13 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>JerseyServicio</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
- 
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
 </web-app>

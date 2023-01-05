@@ -2,6 +2,8 @@ package com.svg.java.jee.mvc.controllers.actions;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.svg.java.jee.mvc.services.CourseService;
 
+@Named
 public class ListCourse implements Action {
 
+	@Inject
+	CourseService courseService;
+	
 	@Override
 	public void ejecutar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CourseService courseService = new CourseService();	
 		request.setAttribute("listOfCourses", courseService.getAll());		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/courses.jsp");
