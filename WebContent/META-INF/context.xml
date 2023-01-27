@@ -6,7 +6,7 @@
 		url="jdbc:postgresql://localhost:5432/web_mvc_course"
 		driverClassName="org.postgresql.Driver"
 		username="postgres" 
-		password="c0d1nG@86"
+		password=""
 	/>
 
 	<Resource name="BeanManager"
